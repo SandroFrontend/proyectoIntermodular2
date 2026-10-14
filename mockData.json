@@ -1,0 +1,32 @@
+{
+  "stats": [
+    {
+      "id": 1,
+      "value": "12",
+      "label": "Productos activos",
+      "delta": "+2 esta semana",
+      "warning": false
+    },
+    {
+      "id": 2,
+      "value": "7",
+      "label": "Pedidos hoy",
+      "delta": "+3 vs. ayer",
+      "warning": false
+    },
+    {
+      "id": 3,
+      "value": "3",
+      "label": "Alertas de stock",
+      "delta": "Acción requerida",
+      "warning": true
+    },
+    {
+      "id": 4,
+      "value": "12.840€",
+      "label": "Ingresos del mes",
+      "delta": "+18% vs. mes anterior",
+      "warning": false
+    }
+  ]
+}

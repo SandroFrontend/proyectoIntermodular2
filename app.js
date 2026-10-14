@@ -1,41 +1,10 @@
-const PRODUCTS = [
-  { id: 1, name: "Taladro Percutor 750W", category: "herramientas", price: 89.99, brand: "Bosch", stock: 15, sku: "BOH-TP750", img: "https://images.unsplash.com/photo-1504148455328-c376907d081c?w=600&h=450&fit=crop&auto=format", desc: "Taladro de alto rendimiento con función percutora. 750W, portabrocas 13mm. Ideal para obra y bricolaje profesional." },
-  { id: 2, name: "Juego de Llaves 24 pzas", category: "herramientas", price: 34.5, brand: "Stanley", stock: 28, sku: "STN-LL24", img: "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=600&h=450&fit=crop&auto=format", desc: "Set completo de llaves fijas y combinadas métricas de 6 a 32mm. Acero cromo-vanadio." },
-  { id: 3, name: "Sierra Circular 1400W", category: "herramientas", price: 124, brand: "DeWalt", stock: 6, sku: "DWT-SC1400", img: "https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=600&h=450&fit=crop&auto=format", desc: "Sierra circular de 185mm, 5500rpm, corte máximo 65mm a 90°." },
-  { id: 4, name: "Grifo Mezclador Cocina", category: "fontanería", price: 67, brand: "Grohe", stock: 9, sku: "GRH-GMC01", img: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=600&h=450&fit=crop&auto=format", desc: "Grifo monomando cromo con caño giratorio 360°. Cartucho cerámico." },
-  { id: 5, name: "Tubo PVC Presión Ø32 2m", category: "fontanería", price: 8.4, brand: "Jimten", stock: 55, sku: "JMT-PVC32", img: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=450&fit=crop&auto=format", desc: "Tubo PVC rígido para instalaciones a presión. DN32, PN16, 2 metros." },
-  { id: 6, name: "Cuadro Eléctrico 8 Módulos", category: "electricidad", price: 45, brand: "Schneider", stock: 12, sku: "SCH-CE8M", img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=450&fit=crop&auto=format", desc: "Caja de distribución empotrable IP30. Con puerta y bornes de tierra." },
-  { id: 7, name: "Cable Manguera 3×1.5mm 100m", category: "electricidad", price: 58, brand: "Prysmian", stock: 7, sku: "PRY-MNG315", img: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&h=450&fit=crop&auto=format", desc: "Cable flexible H05VV-F para instalaciones domésticas. 3 conductores de 1.5mm²." },
-  { id: 8, name: "Tornillos Madera 4×30 (200u)", category: "fijación", price: 4.8, brand: "Würth", stock: 350, sku: "WRT-TM430", img: "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=600&h=450&fit=crop&auto=format", desc: "Tornillo para madera con cabeza Torx T20. Acero zincado bicromatado." },
-  { id: 9, name: "Taco Químico M12 Epoxi", category: "fijación", price: 12.6, brand: "Hilti", stock: 40, sku: "HLT-TQE12", img: "https://images.unsplash.com/photo-1563203369-26f2e4a5ccf7?w=600&h=450&fit=crop&auto=format", desc: "Anclaje químico de epoxi para hormigón fisurado y no fisurado. Cartucho 300ml." },
-  { id: 10, name: "Pintura Blanca Mate 15L", category: "pintura", price: 38.9, brand: "Bruguer", stock: 20, sku: "BRG-PBM15", img: "https://images.unsplash.com/photo-1562259929-b4e1fd3aef09?w=600&h=450&fit=crop&auto=format", desc: "Pintura plástica para interior, lavable clase 1. Gran poder cubriente." },
-  { id: 11, name: "Esmalte Sintético Gris 750ml", category: "pintura", price: 14.2, brand: "Titanlux", stock: 33, sku: "TTX-ESG750", img: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&h=450&fit=crop&auto=format", desc: "Esmalte de acabado brillante para madera y metal. Excelente resistencia exterior." },
-  { id: 12, name: "Nivel Láser Autonivelante", category: "herramientas", price: 156, brand: "Leica", stock: 4, sku: "LCA-NLA01", img: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=450&fit=crop&auto=format", desc: "Nivel láser de líneas cruzadas, autonivelante ±4°. Alcance 30m." },
-];
+import { PRODUCTS, CATEGORIES, ORDERS, USERS as initialUsers, STATS } from "./mockData.js";
 
-const CATEGORIES = [
-  ["all", "Todo"],
-  ["herramientas", "Herramientas"],
-  ["fontanería", "Fontanería"],
-  ["electricidad", "Electricidad"],
-  ["fijación", "Fijación"],
-  ["pintura", "Pintura"],
-];
-
-const ORDERS = [
-  { id: "PED-2026-0421", customer: "Ana Ruiz Vega", total: "245.60€", status: "En preparación", date: "Hoy 10:32" },
-  { id: "PED-2026-0420", customer: "Luis M. Pereira", total: "89.99€", status: "Enviado", date: "Hoy 09:15" },
-  { id: "PED-2026-0419", customer: "Obras del Norte SL", total: "1.240,00€", status: "Pendiente pago", date: "Ayer 17:43" },
-  { id: "PED-2026-0418", customer: "Marina García", total: "38.90€", status: "Entregado", date: "Ayer 14:00" },
-  { id: "PED-2026-0417", customer: "ConstBuild Pro", total: "567.20€", status: "En preparación", date: "21/09/2026" },
-];
-
-const USERS = [
-  { id: 1001, name: "Carlos Martínez", email: "carlos@ejemplo.es", phone: "+34 666 123 456", role: "Cliente", orders: 3 },
-  { id: 1002, name: "Ana Ruiz Vega", email: "ana.ruiz@gmail.com", phone: "+34 677 234 567", role: "Cliente", orders: 1 },
-  { id: 1003, name: "Obras del Norte SL", email: "compras@obranorte.es", phone: "+34 912 345 678", role: "Empresa", orders: 8 },
-  { id: 1, name: "Admin FerroMax", email: "admin@ferromax.es", phone: "+34 954 000 123", role: "Admin", orders: 0 },
-];
+// Función centralizada para obtener los usuarios de sessionStorage o los iniciales[cite: 1, 2]
+function getUsers() {
+  const savedUsers = sessionStorage.getItem("ferromax_users");
+  return savedUsers ? JSON.parse(savedUsers) : [...initialUsers];
+}
 
 const state = {
   view: "home",
@@ -46,8 +15,11 @@ const state = {
   menuOpen: false,
   accountTab: "login",
   loggedIn: false,
+  currentUser: null,
   quoteSent: false,
   adminTab: "dashboard",
+  modalMessage: null,
+  modalCallback: null,
 };
 
 const app = document.querySelector("#app");
@@ -61,6 +33,21 @@ const escapeHtml = (value) =>
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+
+function showCustomModal(message, callback = null) {
+  state.modalMessage = message;
+  state.modalCallback = callback;
+  render();
+}
+
+function closeCustomModal(confirmed = false) {
+  if (confirmed && typeof state.modalCallback === "function") {
+    state.modalCallback();
+  }
+  state.modalMessage = null;
+  state.modalCallback = null;
+  render();
+}
 
 function navigate(view) {
   state.view = view;
@@ -244,14 +231,14 @@ function cartView() {
 
 function accountView() {
   if (state.loggedIn) {
+    const user = state.currentUser || { name: "Carlos Martínez", email: "carlos@ejemplo.es" };
     const customerOrders = [
       ["PED-2026-0412", "12/09/2026", "3", "134.80€", "Entregado"],
       ["PED-2026-0389", "28/08/2026", "1", "89.99€", "Enviado"],
-      ["PED-2026-0341", "05/07/2026", "2", "42.30€", "Entregado"],
     ];
     return `
       <main class="page container">
-        <p class="eyebrow">Portal</p><h1 class="page-title">Área de Clientes</h1><p class="page-copy">Bienvenido, <strong>Carlos Martínez</strong></p>
+        <p class="eyebrow">Portal</p><h1 class="page-title">Área de Clientes</h1><p class="page-copy">Bienvenido, <strong>${escapeHtml(user.name)}</strong> (${escapeHtml(user.email)})</p>
         <div class="stats-grid">
           ${[["3", "Pedidos totales"], ["2", "Direcciones guardadas"], ["3", "Facturas en PDF"]].map(([value, label]) => `<div class="stat-card"><p class="stat-value">${value}</p><p class="stat-label">${label}</p></div>`).join("")}
         </div>
@@ -270,17 +257,42 @@ function accountView() {
         <div class="tab-list"><button class="tab-button ${login ? "active" : ""}" data-account-tab="login">Iniciar Sesión</button><button class="tab-button ${!login ? "active" : ""}" data-account-tab="register">Registrarse</button></div>
         <div class="panel">
           ${login ? `
-            <form id="login-form" class="stack">
-              <div><label for="login-email">Email</label><input class="form-control" id="login-email" type="email" value="carlos@ejemplo.es" required /></div>
-              <div><label for="login-password">Contraseña</label><input class="form-control" id="login-password" type="password" value="ferromax" required /></div>
+            <form id="login-form" class="stack" novalidate>
+              <div>
+                <label for="login-email">Email</label>
+                <input class="form-control validatable" id="login-email" type="email" value="carlos@ejemplo.es" required data-type="email" />
+                <span class="error-msg" style="color:var(--danger);font-size:0.75rem;display:none;margin-top:0.25rem;"></span>
+              </div>
+              <div>
+                <label for="login-password">Contraseña</label>
+                <input class="form-control validatable" id="login-password" type="password" value="ferromax123" required data-type="password" />
+                <span class="error-msg" style="color:var(--danger);font-size:0.75rem;display:none;margin-top:0.25rem;"></span>
+              </div>
               <button class="primary-button full" type="submit">Entrar</button>
             </form>` : `
-            <form id="register-form" class="stack">
-              <div><label for="register-name">Nombre completo</label><input class="form-control" id="register-name" required /></div>
-              <div><label for="register-email">Email</label><input class="form-control" id="register-email" type="email" required /></div>
-              <div><label for="register-phone">Teléfono</label><input class="form-control" id="register-phone" type="tel" required /></div>
-              <div><label for="register-password">Contraseña</label><input class="form-control" id="register-password" type="password" required /></div>
-              <label class="checkbox-label"><input type="checkbox" required /> Acepto la Política de Privacidad y el tratamiento de mis datos conforme al RGPD.</label>
+            <form id="register-form" class="stack" novalidate>
+              <div>
+                <label for="register-name">Nombre completo</label>
+                <input class="form-control validatable" id="register-name" required data-type="text" />
+                <span class="error-msg" style="color:var(--danger);font-size:0.75rem;display:none;margin-top:0.25rem;"></span>
+              </div>
+              <div>
+                <label for="register-email">Email</label>
+                <input class="form-control validatable" id="register-email" type="email" required data-type="email" />
+                <span class="error-msg" style="color:var(--danger);font-size:0.75rem;display:none;margin-top:0.25rem;"></span>
+              </div>
+              <div>
+                <label for="register-phone">Teléfono</label>
+                <input class="form-control validatable" id="register-phone" type="tel" required data-type="phone" />
+                <span class="error-msg" style="color:var(--danger);font-size:0.75rem;display:none;margin-top:0.25rem;"></span>
+              </div>
+              <div>
+                <label for="register-password">Contraseña</label>
+                <input class="form-control validatable" id="register-password" type="password" required data-type="password" />
+                <span class="error-msg" style="color:var(--danger);font-size:0.75rem;display:none;margin-top:0.25rem;"></span>
+              </div>
+              <label class="checkbox-label"><input type="checkbox" id="register-terms" required /> Acepto la Política de Privacidad y el tratamiento de mis datos conforme al RGPD.</label>
+              <span class="error-msg" id="terms-error" style="color:var(--danger);font-size:0.75rem;display:none;margin-top:0.25rem;">Debes aceptar los términos y condiciones.</span>
               <button class="primary-button full" type="submit">Crear Cuenta</button>
             </form>`}
         </div>
@@ -296,17 +308,33 @@ function quoteView() {
     <main class="page container" style="max-width:850px">
       <p class="eyebrow">Clientes profesionales</p><h1 class="page-title">Solicitud de Presupuesto</h1>
       <p class="page-copy" style="margin-bottom:2rem">Para pedidos voluminosos, proyectos de obra o solicitudes especiales. Adjunta tu lista de materiales o despiece y te responderemos en 24h.</p>
-      <form id="quote-form" class="panel stack">
+      <form id="quote-form" class="panel stack" novalidate>
         <div class="form-grid">
-          <div><label for="quote-name">Nombre completo *</label><input class="form-control" id="quote-name" required /></div>
+          <div>
+            <label for="quote-name">Nombre completo *</label>
+            <input class="form-control validatable" id="quote-name" required data-type="text" />
+            <span class="error-msg" style="color:var(--danger);font-size:0.75rem;display:none;margin-top:0.25rem;"></span>
+          </div>
           <div><label for="quote-company">Empresa / Razón social</label><input class="form-control" id="quote-company" /></div>
-          <div><label for="quote-email">Email de contacto *</label><input class="form-control" id="quote-email" type="email" required /></div>
-          <div><label for="quote-phone">Teléfono *</label><input class="form-control" id="quote-phone" type="tel" required /></div>
+          <div>
+            <label for="quote-email">Email de contacto *</label>
+            <input class="form-control validatable" id="quote-email" type="email" required data-type="email" />
+            <span class="error-msg" style="color:var(--danger);font-size:0.75rem;display:none;margin-top:0.25rem;"></span>
+          </div>
+          <div>
+            <label for="quote-phone">Teléfono *</label>
+            <input class="form-control validatable" id="quote-phone" type="tel" required data-type="phone" />
+            <span class="error-msg" style="color:var(--danger);font-size:0.75rem;display:none;margin-top:0.25rem;"></span>
+          </div>
         </div>
-        <div><label for="quote-description">Descripción del pedido / proyecto *</label><textarea class="form-control" id="quote-description" required></textarea></div>
+        <div>
+          <label for="quote-description">Descripción del pedido / proyecto *</label>
+          <textarea class="form-control validatable" id="quote-description" required data-type="text"></textarea>
+          <span class="error-msg" style="color:var(--danger);font-size:0.75rem;display:none;margin-top:0.25rem;"></span>
+        </div>
         <div><label for="quote-materials">Lista de materiales</label><textarea class="form-control" id="quote-materials"></textarea></div>
         <div><label for="quote-file">Adjuntar despiece / plano</label><div class="upload"><input id="quote-file" type="file" accept=".pdf,.jpg,.jpeg,.png" /><p style="margin-top:.6rem;font-size:.72rem">PDF, JPG, PNG · Máx. 10MB</p></div></div>
-        <label class="checkbox-label"><input type="checkbox" required /> Acepto la Política de Privacidad y consiento el tratamiento de mis datos para gestionar esta solicitud.</label>
+        <label class="checkbox-label"><input type="checkbox" id="quote-terms" required /> Acepto la Política de Privacidad y consiento el tratamiento de mis datos para gestionar esta solicitud.</label>
         <button class="primary-button full" type="submit">Enviar Solicitud de Presupuesto</button>
       </form>
     </main>`;
@@ -320,31 +348,40 @@ function statusBadge(status) {
 function ordersTable(withShipping = false) {
   const heads = withShipping ? ["Ref.", "Cliente", "Fecha", "Total", "Estado", "Transportista", "Acción"] : ["Referencia", "Cliente", "Fecha", "Total", "Estado", "Acción"];
   return `<div class="table-wrap"><table><thead><tr>${heads.map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>
-    ${ORDERS.map((order) => `<tr><td class="code">${order.id}</td><td>${order.customer}</td><td>${order.date}</td><td>${order.total}</td><td>${statusBadge(order.status)}</td>${withShipping ? "<td>MRW / GLS</td>" : ""}<td>${withShipping ? `<select class="table-select"><option>Cambiar estado</option><option>En preparación</option><option>Enviado</option><option>Entregado</option><option>Cancelado</option></select>` : '<button class="small-button">Ver</button>'}</td></tr>`).join("")}
+    ${ORDERS.map((order) => `<tr><td class="code">${order.id}</td><td>${order.customer}</td><td>${order.date}</td><td>${order.total}</td><td>${statusBadge(order.status)}</td>${withShipping ? "<td>MRW / GLS</td>" : ""}<td>${withShipping ? `<select class="table-select"><option>Cambiar estado</option><option>En preparación</option><option>Enviado</option><option>Entregado</option><option>Cancelado</option></select>` : '<button class="small-button" data-action="view-order">Ver</button>'}</td></tr>`).join("")}
   </tbody></table></div>`;
 }
 
 function adminContent() {
   if (state.adminTab === "dashboard") {
-    const lowStock = PRODUCTS.filter((product) => product.stock <= 8).length;
+    const statsCardsHTML = STATS.map((stat) => `
+      <div class="stat-card ${stat.warning ? "warning" : ""}">
+        <p class="stat-value">${escapeHtml(stat.value)}</p>
+        <p class="stat-label">${escapeHtml(stat.label)}</p>
+        <p class="stat-delta">${escapeHtml(stat.delta)}</p>
+      </div>
+    `).join("");
+
     return `
       <div class="stats-grid">
-        ${[["12", "Productos activos", "+2 esta semana", false], ["7", "Pedidos hoy", "+3 vs. ayer", false], [String(lowStock), "Alertas de stock", "Acción requerida", true], ["12.840€", "Ingresos del mes", "+18% vs. mes anterior", false]].map(([value, label, delta, warning]) => `<div class="stat-card ${warning ? "warning" : ""}"><p class="stat-value">${value}</p><p class="stat-label">${label}</p><p class="stat-delta">${delta}</p></div>`).join("")}
+        ${statsCardsHTML}
       </div>
       <div class="admin-heading"><h2>Últimos Pedidos</h2></div>${ordersTable()}`;
   }
   if (state.adminTab === "productos") {
     return `<div class="admin-heading"><h2>Gestión de Productos</h2><button class="primary-button" data-action="new-product">+ Nuevo producto</button></div>
       <div class="table-wrap"><table><thead><tr>${["Ref.", "Producto", "Categoría", "Marca", "Precio", "Stock", "Acciones"].map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>
-        ${PRODUCTS.map((product) => `<tr><td class="code">${product.sku}</td><td>${product.name}</td><td>${product.category}</td><td>${product.brand}</td><td class="accent">${money(product.price)}</td><td>${statusBadge(product.stock <= 8 ? `${product.stock} ud.` : `${product.stock} ud.`)}</td><td><div class="row-actions"><button class="small-button">Editar</button><button class="small-button">Eliminar</button></div></td></tr>`).join("")}
+        ${PRODUCTS.map((product) => `<tr><td class="code">${product.sku}</td><td>${product.name}</td><td>${product.category}</td><td>${product.brand}</td><td class="accent">${money(product.price)}</td><td>${statusBadge(product.stock <= 8 ? `${product.stock} ud.` : `${product.stock} ud.`)}</td><td><div class="row-actions"><button class="small-button" data-action="edit-product">Editar</button><button class="small-button" data-action="delete-product" data-id="${product.id}">Eliminar</button></div></td></tr>`).join("")}
       </tbody></table></div>`;
   }
   if (state.adminTab === "pedidos") {
     return `<div class="admin-heading"><h2>Control de Pedidos y Envíos</h2></div>${ordersTable(true)}`;
   }
+  
+  const currentUsers = getUsers();
   return `<div class="admin-heading"><h2>Gestión de Usuarios y Permisos</h2></div>
     <div class="table-wrap"><table><thead><tr>${["ID", "Nombre", "Email", "Teléfono", "Rol", "Pedidos", "Estado", "Acciones"].map((h) => `<th>${h}</th>`).join("")}</tr></thead><tbody>
-      ${USERS.map((user) => `<tr><td class="code">#id_${user.id}</td><td>${user.name}</td><td>${user.email}</td><td>${user.phone}</td><td><span class="badge">${user.role}</span></td><td>${user.orders}</td><td><span class="badge success">Activo</span></td><td><div class="row-actions"><button class="small-button">Editar</button>${user.role !== "Admin" ? '<button class="small-button">Bloquear</button>' : ""}</div></td></tr>`).join("")}
+      ${currentUsers.map((user) => `<tr><td class="code">#id_${user.id}</td><td>${user.name}</td><td>${user.email}</td><td>${user.phone}</td><td><span class="badge">${user.role}</span></td><td>${user.orders}</td><td><span class="badge success">Activo</span></td><td><div class="row-actions"><button class="small-button" data-action="edit-user">Editar</button>${user.role !== "Admin" ? `<button class="small-button" data-action="block-user" data-id="${user.id}">Bloquear</button>` : ""}</div></td></tr>`).join("")}
     </tbody></table></div>`;
 }
 
@@ -358,9 +395,26 @@ function adminView() {
     </main>`;
 }
 
+function renderModalOverlay() {
+  if (!state.modalMessage) return "";
+  return `
+    <div class="modal-backdrop">
+      <article class="modal" role="dialog" aria-modal="true" style="grid-template-columns: 1fr; padding: 2rem; max-width: 450px; text-align: center;">
+        <h2 style="font-family:'DM Serif Display',serif; font-size:1.4rem; margin-bottom:1rem;">Aviso de Sistema</h2>
+        <p style="color:var(--muted); margin-bottom:1.5rem; line-height:1.6;">${escapeHtml(state.modalMessage)}</p>
+        <div style="display:flex; justify-content:center; gap:1rem;">
+          <button class="primary-button" onclick="window.confirmModal(true)">Aceptar</button>
+          ${state.modalCallback ? `<button class="secondary-button" onclick="window.confirmModal(false)">Cancelar</button>` : ""}
+        </div>
+      </article>
+    </div>`;
+}
+
+window.confirmModal = (confirmed) => closeCustomModal(confirmed);
+
 function render() {
   const views = { home: homeView, catalog: catalogView, cart: cartView, account: accountView, presupuesto: quoteView, admin: adminView };
-  app.innerHTML = `${header()}${views[state.view]()}`;
+  app.innerHTML = `${header()}${views[state.view]()}${renderModalOverlay()}`;
 }
 
 function addToCart(id) {
@@ -369,6 +423,61 @@ function addToCart(id) {
   if (existing) existing.qty += 1;
   else state.cart.push({ product, qty: 1 });
 }
+
+// ----------------- VALIDACIÓN AVANZADA DE FORMULARIOS POR JS -----------------
+function validateField(input) {
+  const type = input.dataset.type;
+  const value = input.value.trim();
+  const errorSpan = input.parentElement.querySelector(".error-msg");
+  if (!errorSpan) return true;
+
+  let errorMsg = "";
+
+  if (input.hasAttribute("required") && !value) {
+    errorMsg = "Este campo es obligatorio.";
+  } else if (type === "email" && value) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(value)) errorMsg = "Introduce un formato de correo electrónico válido.";
+  } else if (type === "password" && value) {
+    if (value.length < 6) errorMsg = "La contraseña debe tener al menos 6 caracteres.";
+  } else if (type === "phone" && value) {
+    const phoneRegex = /^\+?[0-9\s-]{9,15}$/;
+    if (!phoneRegex.test(value)) errorMsg = "Introduce un número de teléfono válido.";
+  }
+
+  if (errorMsg) {
+    input.style.borderColor = "var(--danger)";
+    errorSpan.textContent = errorMsg;
+    errorSpan.style.display = "block";
+    return false;
+  } else {
+    input.style.borderColor = "var(--border)";
+    errorSpan.textContent = "";
+    errorSpan.style.display = "none";
+    return true;
+  }
+}
+
+app.addEventListener("blur", (event) => {
+  if (event.target.classList.contains("validatable")) {
+    validateField(event.target);
+  }
+}, true);
+
+app.addEventListener("input", (event) => {
+  if (event.target.classList.contains("validatable")) {
+    validateField(event.target);
+  }
+  if (event.target.id === "catalog-search") {
+    state.search = event.target.value;
+    const cursor = event.target.selectionStart;
+    render();
+    const input = document.querySelector("#catalog-search");
+    input.focus();
+    input.setSelectionRange(cursor, cursor);
+  }
+});
+// ----------------------------------------------------------------------------
 
 app.addEventListener("click", (event) => {
   const target = event.target.closest("button, [data-product], [data-action], [data-category-nav]");
@@ -419,41 +528,116 @@ app.addEventListener("click", (event) => {
     return render();
   }
   if (target.dataset.action === "logout") {
-    state.loggedIn = false;
-    return render();
+    showCustomModal("¿Estás seguro de que deseas cerrar sesión?", () => {
+      state.loggedIn = false;
+      state.currentUser = null;
+    });
+    return;
   }
   if (target.dataset.action === "new-quote") {
     state.quoteSent = false;
     return render();
   }
   if (target.dataset.action === "checkout") {
-    window.alert("Pasarela de pago simulada. La exportación está lista para conectar con el TPV elegido.");
+    showCustomModal("Pasarela de pago simulada con éxito. Pedido procesado correctamente.");
+    return;
   }
   if (target.dataset.action === "download") {
-    window.alert("Descarga de factura simulada.");
+    showCustomModal("Descarga de factura en PDF iniciada correctamente.");
+    return;
   }
   if (target.dataset.action === "new-product") {
-    window.alert("Formulario de alta de producto simulado.");
+    showCustomModal("Formulario interactivo de alta de nuevo producto simulado.");
+    return;
   }
-});
-
-app.addEventListener("input", (event) => {
-  if (event.target.id !== "catalog-search") return;
-  state.search = event.target.value;
-  const cursor = event.target.selectionStart;
-  render();
-  const input = document.querySelector("#catalog-search");
-  input.focus();
-  input.setSelectionRange(cursor, cursor);
+  if (target.dataset.action === "delete-product") {
+    const prodId = Number(target.dataset.id);
+    showCustomModal("¿Estás seguro de que deseas eliminar este producto del inventario?", () => {
+      const idx = PRODUCTS.findIndex(p => p.id === prodId);
+      if (idx !== -1) PRODUCTS.splice(idx, 1);
+    });
+    return;
+  }
+  if (target.dataset.action === "block-user") {
+    const userId = Number(target.dataset.id);
+    showCustomModal("¿Deseas bloquear el acceso a este usuario?", () => {
+      const usersList = getUsers();
+      const user = usersList.find(u => u.id === userId);
+      if (user) {
+        user.role = "Bloqueado";
+        sessionStorage.setItem("ferromax_users", JSON.stringify(usersList));
+      }
+    });
+    return;
+  }
+  if (target.dataset.action === "view-order" || target.dataset.action === "edit-product" || target.dataset.action === "edit-user") {
+    showCustomModal("Acción interactiva de gestión seleccionada correctamente.");
+    return;
+  }
 });
 
 app.addEventListener("submit", (event) => {
   event.preventDefault();
-  if (event.target.id === "login-form" || event.target.id === "register-form") {
+  const form = event.target;
+  const validatables = form.querySelectorAll(".validatable");
+  let formValid = true;
+
+  validatables.forEach((input) => {
+    if (!validateField(input)) formValid = false;
+  });
+
+  if (!formValid) return;
+
+  if (form.id === "login-form") {
+    const emailInput = form.querySelector("#login-email");
+    const passwordInput = form.querySelector("#login-password");
+    
+    const emailVal = emailInput ? emailInput.value.trim() : "";
+    const passwordVal = passwordInput ? passwordInput.value.trim() : "";
+
+    const usersList = getUsers();
+    const foundUser = usersList.find(u => u.email === emailVal);
+
+    if (!foundUser) {
+      showCustomModal("El correo electrónico introducido no está registrado en el sistema.");
+      return;
+    }
+
+    if (passwordVal.length < 6) {
+      showCustomModal("Contraseña incorrecta. Debe tener al menos 6 caracteres.");
+      return;
+    }
+
     state.loggedIn = true;
-    render();
+    state.currentUser = foundUser;
+    showCustomModal(`¡Acceso autenticado correctamente! Bienvenido de nuevo, ${state.currentUser.name}.`);
+  } else if (form.id === "register-form") {
+    const nameInput = form.querySelector("#register-name");
+    const emailInput = form.querySelector("#register-email");
+    const phoneInput = form.querySelector("#register-phone");
+
+    const usersList = getUsers();
+    const newUser = {
+      id: usersList.length > 0 ? Math.max(...usersList.map(u => u.id)) + 1 : 1004,
+      name: nameInput ? nameInput.value.trim() : "Nuevo Usuario",
+      email: emailInput ? emailInput.value.trim() : "",
+      phone: phoneInput ? phoneInput.value.trim() : "",
+      role: "Cliente",
+      orders: 0
+    };
+
+    usersList.push(newUser);
+    // Guardado estricto en sessionStorage para que la tabla de administración lo lea inmediatamente[cite: 1, 2]
+    sessionStorage.setItem("ferromax_users", JSON.stringify(usersList));
+
+    state.loggedIn = true;
+    state.currentUser = newUser;
+    showCustomModal(`¡Cuenta creada con éxito! Bienvenido, ${newUser.name}.`, () => {
+      render();
+    });
   }
-  if (event.target.id === "quote-form") {
+
+  if (form.id === "quote-form") {
     state.quoteSent = true;
     render();
   }
