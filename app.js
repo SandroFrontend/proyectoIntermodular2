@@ -1,6 +1,6 @@
 import { PRODUCTS, CATEGORIES, ORDERS, USERS as initialUsers, STATS } from "./mockData.js";
 
-// Función centralizada para obtener los usuarios de sessionStorage o los iniciales[cite: 1, 2]
+
 function getUsers() {
   const savedUsers = sessionStorage.getItem("ferromax_users");
   return savedUsers ? JSON.parse(savedUsers) : [...initialUsers];
